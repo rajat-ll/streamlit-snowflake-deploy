@@ -32,17 +32,21 @@ def push_first():
         commit_message = os.getenv("COMMIT_MESSAGE", "Automated commit")
     else:
         commit_message = session.prompt("Enter commit message: ")
+
     try:
+        # Check for changes
+        result = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+        if not result.stdout.strip():
+            print("No changes to commit.")
+            return
+
         subprocess.run(["git", "add", "."], check=True)
         result = subprocess.run(["git", "commit", "-m", commit_message], check=True, capture_output=True, text=True)
         print(result.stdout)
         subprocess.run(["git", "push"], check=True)
         print("Git push successful.")
     except subprocess.CalledProcessError as e:
-        if "nothing to commit" in e.stderr:
-            print("Nothing to commit, working tree clean.")
-        else:
-            print(f"Error executing Git commands: {e}")
+        print(f"Error executing Git commands: {e}")
         exit(1)
 
 def trigger_workflow():
