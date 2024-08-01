@@ -60,7 +60,7 @@ def trigger_workflow():
 
     if not all([SNOWFLAKE_ACCOUNT, SNOWFLAKE_USER, SNOWFLAKE_PASSWORD, SNOWFLAKE_ROLE, GITHUB_TOKEN]):
         print("Please set your credentials in the .env file.")
-        exit(1)
+        return  # Exit the function instead of exiting the script
 
     REPO_OWNER = "rajat-ll"
     REPO_NAME = "streamlit-snowflake-deploy"
