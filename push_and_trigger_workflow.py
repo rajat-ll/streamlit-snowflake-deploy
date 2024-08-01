@@ -27,7 +27,11 @@ session = PromptSession(history=FileHistory('commit_message_history.txt'),
                         completer=HistoryCompleter())
 
 def push_first():
-    commit_message = session.prompt("Enter commit message: ")
+    if os.getenv("CI"):
+        # Running in a CI environment
+        commit_message = os.getenv("COMMIT_MESSAGE", "Automated commit")
+    else:
+        commit_message = session.prompt("Enter commit message: ")
     try:
         subprocess.run(["git", "add", "."], check=True)
         result = subprocess.run(["git", "commit", "-m", commit_message], check=True, capture_output=True, text=True)
