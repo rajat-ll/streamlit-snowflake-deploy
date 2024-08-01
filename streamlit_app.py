@@ -2,12 +2,12 @@
 import streamlit as st
 from snowflake.snowpark.context import get_active_session
 import pandas as pd
-from snowflake.snowpark.context import get_active_session
+# from snowflake.snowpark.context import get_active_session
 
 session = get_active_session()
 
 # Write directly to the app
-st.title("Example Streamlit App :balloon:")
+st.title("Example Streamlit App :balloon: Testing SSs")
 
 # query = "SELECT * FROM LL_PROD_RAW_ZONE.PUBLIC.EXTRA_TABLES;"
 # df = pd.DataFrame(session.sql(query).collect())
