@@ -63,13 +63,7 @@ def trigger_workflow():
         "Authorization": f"token {GITHUB_TOKEN}"
     }
     data = {
-        "ref": "main",
-        "inputs": {
-            "snowflake_account": SNOWFLAKE_ACCOUNT,
-            "snowflake_user": SNOWFLAKE_USER,
-            "snowflake_password": SNOWFLAKE_PASSWORD,
-            "snowflake_role": SNOWFLAKE_ROLE
-        }
+        "ref": "main"
     }
     response = requests.post(url, headers=headers, data=json.dumps(data))
 
