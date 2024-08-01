@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas snowflake-connector-python streamlit numpy pyyaml snowpark
+          pip install pandas snowflake-connector-python streamlit numpy pyyaml snowflake-snowpark-python
 
       - name: Deploy to Snowflake
         env:
